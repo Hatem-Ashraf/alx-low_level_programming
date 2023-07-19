@@ -11,30 +11,32 @@ void jack_bauer(void)
 
 	for (i = 0; i < 10; i++)
 	{
-		if (n == 2 && k == 3 && j == 5 && i == 9)
-		{
-			break;
-		}
 		_putchar(n + '0');
 		_putchar(k + '0');
 		_putchar(':');
 		_putchar(j + '0');
 		_putchar(i + '0');
+		if (n == 2 && k == 3 && j == 5 && i == 9)
+		{
+			break;
+		}
+		if (k == 9 && j == 5 && i == 9)
+		{
+			i = 0;
+			j = 0;
+			k = 0;
+			n++;
+		}
+		if (j == 5 && i == 9)
+		{
+			i = 0;
+			j = 0;
+			k++;
+		}
 		if (i == 9)
 		{
 			i = 0;
 			j++;
 		}
-		if (j == 9)
-		{
-			j = 0;
-			k++;
-		}
-		if (k == 9)
-		{
-			k = 0;
-			n++;
-		}
-		_putchar('\n');
 	}
 }
