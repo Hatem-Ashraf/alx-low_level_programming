@@ -1,5 +1,4 @@
 #include "main.h"
-#include <stdio.h>
 
 /**
   * natural - print sum of nums that divisible by 3 and 5
@@ -9,7 +8,7 @@
   */
 void natural(int n)
 {
-	int i, sum;
+	int i, sum, arr[5];
 
 	if (n < 1024)
 	{
@@ -19,8 +18,21 @@ void natural(int n)
 			if (i % 3 == 0 || i % 5 == 0)
 			{
 				sum = sum + i;
-			}	
+			}
 		}
-		printf("%d\n", sum);
+		i = 0;
+		while (sum > 0)
+		{
+			arr[i] = sum % 10;
+			i++;
+			sum /= 10;
+		}
+		i--;
+		while (i > -1)
+		{
+			_putchar(arr[i] + '0');
+			i--;
+		}
+		_putchar('\n');
 	}
 }
