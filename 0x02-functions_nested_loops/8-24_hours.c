@@ -22,20 +22,20 @@ void jack_bauer(void)
 		}
 		if (k == 9 && j == 5 && i == 9)
 		{
-			i = 0;
+			i = -1;
 			j = 0;
 			k = 0;
 			n++;
 		}
 		if (j == 5 && i == 9)
 		{
-			i = 0;
+			i = -1;
 			j = 0;
 			k++;
 		}
 		if (i == 9)
 		{
-			i = 0;
+			i = -1;
 			j++;
 		}
 		_putchar('\n');
