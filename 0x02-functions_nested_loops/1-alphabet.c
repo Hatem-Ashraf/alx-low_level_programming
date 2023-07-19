@@ -1,11 +1,17 @@
 #include "main.h"
 /**
-* main - start point
-*
-* Return: 0
-*/
-int main(void)
+  * print_alphabet = printing alphabet
+  *
+  * Return: nothing
+  */
+void print_alphabet(void)
 {
-	print_alphabet();
-	return (0);
+	char alpha[] = "abcdefghijklmnopqrstuvwxyz";
+	int i;
+	for (i = 0; i < 26; i++)
+	{
+		_putchar(alpha[i]);
+	}
+	_putchar('\n');
+	return ;
 }
