@@ -1,38 +1,26 @@
 #include "main.h"
+#include <stdio.h>
 
 /**
-  * natural - print sum of nums that divisible by 3 and 5
-  * @n: number
+  * main - start point
   *
-  * Return: nothing
+  * Return: always 1 
   */
-void natural(int n)
+void main(void)
 {
-	int i, sum, arr[5];
-
-	if (n < 1024)
+	if (n >= 1024)
 	{
-		sum = 0;
-		for (i = n - 1; i > 0; i--)
-		{
-			if (i % 3 == 0 || i % 5 == 0)
-			{
-				sum = sum + i;
-			}
-		}
-		i = 0;
-		while (sum > 0)
-		{
-			arr[i] = sum % 10;
-			i++;
-			sum /= 10;
-		}
-		i--;
-		while (i > -1)
-		{
-			_putchar(arr[i] + '0');
-			i--;
-		}
-		_putchar('\n');
+		return ;
 	}
+	int i, sum;
+
+	sum = 0;
+	for (i = 3; i < 1024; i--)
+	{
+		if (i % 3 == 0 && i % 5 == 0)
+		{
+			sum += i;
+		}
+	}
+	printf("%d", sum);
 }
