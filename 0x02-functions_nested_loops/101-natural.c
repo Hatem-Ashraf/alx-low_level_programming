@@ -8,10 +8,6 @@
   */
 void main(void)
 {
-	if (n >= 1024)
-	{
-		return ;
-	}
 	int i, sum;
 
 	sum = 0;
