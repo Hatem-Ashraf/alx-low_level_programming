@@ -7,8 +7,8 @@
 void jack_bauer(void)
 {
 	int n, k, j, i;
-	i = j = k = n = 0;
 
+	i = j = k = n = 0;
 	for (i = 0; i < 10; i++)
 	{
 		_putchar(n + '0');
