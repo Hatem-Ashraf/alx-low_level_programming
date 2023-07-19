@@ -7,14 +7,14 @@
 void times_table(void)
 {
 	int i, j, res;
-	
+
 	res = j = i = 0;
 	while (1)
 	{
 		res = i * j;
 		if (res > 9)
 		{
-			if (i != 0 && j != 0)
+			if (i != 0)
 			{
 				_putchar(',');
 				_putchar(' ');
@@ -23,7 +23,7 @@ void times_table(void)
 			_putchar(res % 10 + '0');
 		} else
 		{
-			if (i != 0 && j != 0)
+			if (i != 0)
 			{
 				_putchar(',');
 				_putchar(' ');
