@@ -31,7 +31,7 @@ int isPrime(long int n)
 int main(void)
 {
 	long int i;
-	long int x = 1231952;
+	long int x = 612852475143;
 	long int largestPrime = 2;
 
 	for (i = 2; i < x; i++)
