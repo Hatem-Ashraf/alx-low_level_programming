@@ -7,7 +7,7 @@
  */
 int main(void)
 {
-	long long int i, x = 612852475143, largestPrime = 2;
+	long int i, x = 612852475143, largestPrime = 2;
 
 	for (i = 2; i * i <= x; i++)
 	{
@@ -21,6 +21,6 @@ int main(void)
 	{
 		largestPrime = x;
 	}
-	printf("%lld\n", largestPrime);
+	printf("%ld\n", largestPrime);
 	return (0);
 }
