@@ -7,9 +7,9 @@
   *
   * Return: nothing
   */
-void swap_int(int *n1, int *n2)
+void swap_int(int *a, int *b)
 {
-	int temp = *n1;
-	*n1 = *n2;
-	*n2 = temp;
+	int temp = *a;
+	*a = *b;
+	*b = temp;
 }
