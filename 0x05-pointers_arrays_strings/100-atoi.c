@@ -11,17 +11,17 @@
 int _atoi(char *s)
 {
 	char *start = s;
-	int flag = 0;
+	int flag = 1;
 	int val;
 
 	while (*start != '\0')
 	{
+		if (*start == '-')
+		{
+			flag *= -1;
+		}
 		if (*start >= '0' && *start <= '9')
 		{
-			if (*(start - 1) == '-')
-			{
-				flag = 1;
-			}
 			break;
 		}
 		start++;
@@ -31,7 +31,7 @@ int _atoi(char *s)
 		return (0);
 	}
 	val = atoi(start);
-	if (flag)
+	if (flag == -1)
 	{
 		val *= -1;
 	}
