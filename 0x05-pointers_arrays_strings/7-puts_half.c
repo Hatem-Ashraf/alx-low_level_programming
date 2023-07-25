@@ -24,10 +24,9 @@ void puts_half(char *str)
 		len /= 2;
 	}
 	s = str + len;
-	while (*s != '\0')
+	while (*s != '\0' && *s != '\n')
 	{
-		_putchar(*s);
-		s++;
+		_putchar(*s++);
 	}
 	_putchar('\n');
 }
