@@ -34,7 +34,7 @@ int _atoi(char *s)
 	if (flag == -1 && val == 2147483648)
 	{
 		val = ~val + 1;
-	} else if (flag == -1 )
+	} else if (flag == -1)
 	{
 		val *= -1;
 	}
