@@ -4,12 +4,12 @@
   * cap_string - cap each word in a string
   * @str: string
   *
-  * Retunr: pointer to that string
+  * Return: pointer to that string
   */
 char *cap_string(char *str)
 {
 	char *s = str;
-	char sep[] = {' ', '\t', '\n', ',', ';', '.', '!', '?', '\"', '(', ')', '{', '}', '\0'};
+	char sep[] = " \t\n,;.!?\"(){}";
 	int i;
 
 	if (*s >= 97 && *s <= 122)
