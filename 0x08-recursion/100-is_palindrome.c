@@ -1,5 +1,21 @@
 #include "main.h"
 
+
+/**
+  * endd - get the last char
+  * @str: string
+  *
+  * Return: the last char
+  */
+char *endd(char *str)
+{
+	if (*str == '\0')
+	{
+		return (str);
+	}
+	return (endd(str + 1));
+}
+
 /**
   * pal - palendrom function
   * @start: start string
@@ -35,10 +51,7 @@ int is_palindrome(char *s)
 	{
 		return (1);
 	}
-	while (*en != '\0')
-	{
-		en++;
-	}
+	en = endd(en);
 	en--;
 	return (pal(s, en));
 }
