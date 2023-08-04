@@ -34,7 +34,7 @@ int wil(char **strr1, char *str1, char *str2)
 	{
 		return (0);
 	}
-	if (*str1 == *str2)
+	if (*str1 == *str2 && *(str1 - 1) != *str2)
 	{
 		*strr1 = str1;
 		return (1);
