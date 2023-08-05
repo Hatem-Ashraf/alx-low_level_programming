@@ -9,7 +9,10 @@
   */
 int main(int argc, char *argv[])
 {
-	int n1, n2;
+	int i, j, temp;
+	int mul = 1;
+	int nums[2] = {0};
+	int negative[2] = {0};
 
 	(void) argc;
 	if (argc != 3)
@@ -17,21 +20,29 @@ int main(int argc, char *argv[])
 		printf("Error\n");
 		return (1);
 	}
-	if (*argv[1] == 45)
+	for (i = 0; i < 2; i++)
 	{
-		n1 =  -1 * (*(argv[1] + 1) - 48);
-	} else
-	{
-		n1 = *argv[1] - 48;
+		for (j = 0; *(argv[i + 1] + j) != '\0'; j++)
+		{
+			temp = *(argv[i + 1] + j);
+			if (temp == 45)
+			{
+				negative[i] = 1;
+				continue;
+			}
+			nums[i] *= mul;
+			nums[i] += (temp - 48);
+			mul = 10;
+		}
+		mul = 1;
 	}
-	if (*argv[2] == 45)
+	for (i = 0; i < 2; i++)
 	{
-		n2 =  -1 * (*(argv[2] + 1) - 48);
-	} else
-	{
-		n2 = *argv[2] - 48;
+		if (negative[i])
+		{
+			nums[i] *= -1;
+		}
 	}
-
-	printf("%d\n", n1 * n2);
+	printf("%d\n", nums[0] * nums[1]);
 	return (0);
 }
