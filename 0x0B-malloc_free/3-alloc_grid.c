@@ -1,7 +1,7 @@
 #include "main.h"
 #include <stdlib.h>
 /**
-  * allic_grid - alocates 2D array
+  * alloc_grid - alocates 2D array
   * @width: width
   * @height: height
   *
@@ -13,7 +13,7 @@ int **alloc_grid(int width, int height)
 	int *temp = malloc(width * height * sizeof(int));
 	int i, j;
 
-	if (!s)
+	if (!s || !temp)
 	{
 		return (NULL);
 	}
