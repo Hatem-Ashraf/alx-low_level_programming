@@ -1,5 +1,6 @@
 #include "main.h"
 #include <stdlib.h>
+#include <stdio.h>
 /**
   * length - length
   * @ch: string
@@ -8,15 +9,15 @@
   */
 int length(char *ch)
 {
-	int len;
+	char *str = ch;
+	int len = 0;
 
-	while (*ch != '\0')
+	while (*str != '\0')
 	{
 		len++;
-		ch++;
+		str++;
 	}
 	return (len);
-
 }
 /**
   * str_concat - concates two strings
@@ -27,33 +28,31 @@ int length(char *ch)
   */
 char *str_concat(char *s1, char *s2)
 {
-	char *str1 = s1;
-	char *str2 = s2;
-	char *s = NULL;
-	char *temp = NULL;
+	char *str1, *str2, *s, *temp;
 	int len1 = 0;
 	int len2 = 0;
 
+	s = temp = NULL;
+	str1 = s1;
+	str2 = s2;
+
 	if (!s1)
 	{
-		str1 = malloc(1);
+		str1 = malloc(sizeof(char));
 		*str1 = '\0';
 	}
 	if (!s2)
 	{
-		str2 = malloc(1);
+		str2 = malloc(sizeof(char));
 		*str2 = '\0';
-	}
-	while (*str1 != '\0')
-	{
-		len1++;
-		str1++;
 	}
 	len1 = length(str1);
 	len2 = length(str2);
-	str1 = s1;
-	str2 = s2;
 	s = malloc(len1 + len2 + 1);
+	if (!s)
+	{
+		return (NULL);
+	}
 	temp = s;
 	while (*str1 != '\0')
 	{
