@@ -11,15 +11,14 @@ void *_calloc(unsigned int nmemb, unsigned int size)
 {
 	char *s;
 
-        if (!nmemb || !size)
-        {
-                return (NULL);
-        }
-        s = calloc(nmemb ,size);
-        if (!s)
-        {
-                return (NULL);
-        }
-        return (s);
-
+	if (!nmemb || !size)
+	{
+		return (NULL);
+	}
+	s = calloc(nmemb, size);
+	if (!s)
+	{
+		return (NULL);
+	}
+	return (s);
 }
