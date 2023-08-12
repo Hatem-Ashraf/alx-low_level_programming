@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "main.h"
+#include <stdio.h>
 /**
   *
   */
@@ -40,8 +41,8 @@ void mul(char *num1, char* num2, char *res)
 	{
 		for (j = len2 - 1; j >= 0; j--)
 		{
-			n1 = num1[i];
-			n2 = num2[j];
+			n1 = num1[i] - '0';
+			n2 = num2[j] - '0';
 			prod = n1 * n2;
 
 			high = i + j;
@@ -54,7 +55,7 @@ void mul(char *num1, char* num2, char *res)
 		}
 	}
 	index = 0;
-	while (index >= len1 + len2 && final[index] == 0)
+	while (index < len1 + len2 && final[index] == 0)
 	{
 		index++;
 	}
