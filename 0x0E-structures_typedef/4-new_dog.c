@@ -14,6 +14,7 @@ int ln(char *ch)
 		len++;
 	return (len);
 }
+
 /**
   * cpy - copies src to dest
   * @dest: string
