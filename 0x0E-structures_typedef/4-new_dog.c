@@ -26,6 +26,7 @@ void cpy(char *dest, char *src)
 {
 	while (*src)
 		*dest++ = *src++;
+	*dest = '\0';
 }
 /**
   * new_dog - creates a new dog
@@ -47,13 +48,13 @@ dog_t *new_dog(char *name, float age, char *owner)
 	dog = malloc(sizeof(dog_t));
 	if (!dog)
 		return (NULL);
-	n = malloc(ln(name));
+	n = malloc(ln(name) + 1);
 	if (!n)
 	{
 		free(dog);
 		return (NULL);
 	}
-	o = malloc(ln(owner));
+	o = malloc(ln(owner) + 1);
 	if (!o)
 	{
 		free(n);
