@@ -1,20 +1,5 @@
 #include "3-calc.h"
 /**
-  * ln - gets the length
-  * @ch: string
-  *
-  * Return: the length
-  */
-int ln(char *ch)
-{
-	int len = 0;
-
-	while (*ch++)
-		len++;
-	return (len);
-}
-
-/**
   * get_op_func - selects the function
   * @s: the operator '+' or '-', ..
   *
@@ -32,13 +17,9 @@ int (*get_op_func(char *s))(int, int)
 	};
 	int i;
 
-	if (ln(s) > 1)
-	{
-		return (NULL);
-	}
 	for (i = 0; i < 5; i++)
 	{
-		if (*(ops[i].op) == *s)
+		if (*(ops[i].op) == *s && !s[1])
 		{
 			return (ops[i].f);
 		}
