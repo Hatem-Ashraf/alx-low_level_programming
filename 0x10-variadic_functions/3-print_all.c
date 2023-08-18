@@ -1,7 +1,7 @@
 #include "variadic_functions.h"
 
 /**
-  * str_format - prints a string
+  * char_format - prints a char
   * @separator: sep
   * @ap: va_list item
   *
@@ -21,6 +21,7 @@ void char_format(char *separator, va_list ap)
 void str_format(char *separator, va_list ap)
 {
 	char *str = va_arg(ap, char *);
+
 	if (!str)
 	{
 		str = "(nil)";
@@ -36,7 +37,7 @@ void str_format(char *separator, va_list ap)
   * Return: void
   */
 void int_format(char *separator, va_list ap)
-{	
+{
 	printf("%s%d", separator, va_arg(ap, int));
 }
 

@@ -10,7 +10,7 @@ void print_numbers(const char *separator, const unsigned int n, ...);
 void print_strings(const char *separator, const unsigned int n, ...);
 
 /**
-  * print_format - struct used to map between a char and a function
+  * struct print_format - struct used to map between a char and a function
   * @s: the char like 'c' for char or 'i' for int
   * @f: function pointer to the specific function
   *
