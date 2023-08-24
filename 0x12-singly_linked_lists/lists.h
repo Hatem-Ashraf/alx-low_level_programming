@@ -18,4 +18,6 @@ typedef struct list_s
 
 unsigned int print_list(const list_t *h);
 
+unsigned int list_len(const list_t *h);
+
 #endif
