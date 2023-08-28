@@ -17,4 +17,6 @@ typedef struct listint_s
 
 unsigned int print_listint(const listint_t *h);
 
+unsigned int listint_len(const listint_t *h);
+
 #endif
