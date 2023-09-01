@@ -1,4 +1,5 @@
 #include "main.h"
+#include <stdio.h>
 /**
   * get_bit - returns the value of a given bit
   * @n: Decimal value
@@ -12,9 +13,12 @@ int get_bit(unsigned long int n, unsigned int index)
 	unsigned long int temp = n;
 
 
-	for (counter = 1; temp; counter++)
+	if (n == 0)
+		return (-1);
+	for (counter = 0; temp; counter++)
 		temp >>= 1;
-	if (index > counter)
+	printf("%ld\n", counter);
+	if (index > counter - 1)
 		return (-1);
 	if (n & (1 << index))
 	{
