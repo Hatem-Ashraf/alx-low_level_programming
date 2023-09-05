@@ -21,12 +21,14 @@ int create_file(const char *filename, char *text_content)
 		fd = open(filename, O_WRONLY | O_CREAT | O_TRUNC);
 	if (fd == -1)
 		return (-1);
+	if (text_content)
+	{
 	for (i = 0; text_content[i]; i++)
 		;
-	if (text_content)
-		bytes = write(fd, &text_content[0], i);
+	bytes = write(fd, &text_content[0], i);
 	if (bytes == -1)
 		return (-1);
+	}
 	close(fd);
 	return (1);
 
