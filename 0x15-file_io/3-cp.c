@@ -33,12 +33,12 @@ void file_to_file(const char *filename1, const char *filename2)
 	while (bytes > 0)
 	{
 		bytes = read(fd1, &buffer[0], sizeof(buffer) - 1);
-		if (bytes == -1)
+		if (bytes <= 0)
 			break;
 		buffer[bytes] = '\0';
 		bytes = write(fd2, &buffer[0], bytes);
 		if (bytes == -1)
-			break;
+			dprintf(2, "Error: Can't write to %s\n", filename2), exit(99);
 	}
 	close(fd1);
 	if (fcntl(fd1, F_GETFD) != -1)
