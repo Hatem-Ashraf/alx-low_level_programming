@@ -1,12 +1,14 @@
 #include "main.h"
+#include <stdio.h>
+#include <stdlib.h>
 /**
   * file_to_file - copies from one to another
   * @filename1: name of the 1st file
   * @filename2: name of the 2nd file
   *
-  * @Return: 1 if success, otherwise exit with a specific code
+  * Return: 1 if success, otherwise exit with a specific code
   */
-int file_to_file(const char *filename1, const char *filename2)
+void file_to_file(const char *filename1, const char *filename2)
 {
 	int fd1, fd2;
 	ssize_t bytes = 1;
@@ -14,10 +16,7 @@ int file_to_file(const char *filename1, const char *filename2)
 
 	fd1 = open(filename1, O_RDONLY);
 	if (fd1 == -1)
-	{
-		dprintf(2, "Error: Can't read from file %s\n", filename1);
-		exit(98);
-	}
+		dprintf(2, "Error: Can't read from file %s\n", filename1), exit(98);
 	if (access(filename2, F_OK) == -1)
 	{
 		fd2 = open(filename2, O_WRONLY | O_CREAT);
@@ -30,10 +29,7 @@ int file_to_file(const char *filename1, const char *filename2)
 	else
 		fd2 = open(filename2, O_WRONLY | O_CREAT | O_TRUNC);
 	if (fd2 == -1)
-	{
-		dprintf(2, "Error: Can't write to %s\n", filename2);
-		exit(99);
-	}
+		dprintf(2, "Error: Can't write to %s\n", filename2), exit(99);
 	while (bytes > 0)
 	{
 		bytes = read(fd1, &buffer[0], sizeof(buffer) - 1);
@@ -50,23 +46,15 @@ int file_to_file(const char *filename1, const char *filename2)
 	close(fd2);
 	if (fcntl(fd2, F_GETFD) != -1)
 		dprintf(2, "Error: Can't close fd %d\n", fd2), exit(100);
-	return (1);
 }
 
 /**
   * main - start point
-  * @argc
+  * @ac: argc
+  * @av: argv
+  *
+  * Return: always 0
   */
-#include <stdio.h>
-#include <stdlib.h>
-
-/**
- * main - check the code
- * @ac: argc
- * @av: argv
- *
- * Return: Always 0.
- */
 int main(int ac, char **av)
 {
 	if (ac != 3)
