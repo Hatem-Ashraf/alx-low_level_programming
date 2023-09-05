@@ -10,7 +10,7 @@ int file_to_file(const char *filename1, const char *filename2)
 {
 	int fd1, fd2;
 	ssize_t bytes = 1;
-	char buffer[1024 * 8];
+	char buffer[1024];
 
 	fd1 = open(filename1, O_RDONLY);
 	if (fd1 == -1)
@@ -19,7 +19,7 @@ int file_to_file(const char *filename1, const char *filename2)
 		exit(98);
 	}
 	if (access(filename2, F_OK) == -1)
-		fd2 = open(filename2, O_WRONLY | O_CREAT, 0664);
+		fd2 = open(filename2, O_WRONLY | O_CREAT, (S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH));
 	else
 		fd2 = open(filename2, O_WRONLY | O_TRUNC);
 	if (fd2 == -1)
@@ -29,7 +29,7 @@ int file_to_file(const char *filename1, const char *filename2)
 	}
 	while (bytes > 0)
 	{
-		bytes = read(fd1, &buffer[0], 1023);
+		bytes = read(fd1, &buffer[0], sizeof(buffer) - 1);
 		if (bytes == -1)
 			break;
 		buffer[bytes] = '\0';
@@ -39,17 +39,10 @@ int file_to_file(const char *filename1, const char *filename2)
 	}
 	close(fd1);
 	if (fcntl(fd1, F_GETFD) != -1)
-	{
-		dprintf(2, "Error: Can't close fd %d\n", fd1);
-		exit(100);
-
-	}
+		dprintf(2, "Error: Can't close fd %d\n", fd1), exit(100);
 	close(fd2);
-	if (fcntl(fd1, F_GETFD) != -1)
-	{
-		dprintf(2, "Error: Can't close fd %d\n", fd1);
-		exit(100);
-	}
+	if (fcntl(fd2, F_GETFD) != -1)
+		dprintf(2, "Error: Can't close fd %d\n", fd2), exit(100);
 	return (1);
 }
 
