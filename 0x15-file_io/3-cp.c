@@ -19,9 +19,16 @@ int file_to_file(const char *filename1, const char *filename2)
 		exit(98);
 	}
 	if (access(filename2, F_OK) == -1)
-		fd2 = open(filename2, O_WRONLY | O_CREAT, (S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH));
+	{
+		fd2 = open(filename2, O_WRONLY | O_CREAT);
+		if (chmod(filename2, 0664) != 0)
+		{
+			dprintf(2, "Error: Can't write to %s\n", filename2);
+			exit(99);
+		}
+	}
 	else
-		fd2 = open(filename2, O_WRONLY | O_TRUNC);
+		fd2 = open(filename2, O_WRONLY | O_CREAT | O_TRUNC);
 	if (fd2 == -1)
 	{
 		dprintf(2, "Error: Can't write to %s\n", filename2);
