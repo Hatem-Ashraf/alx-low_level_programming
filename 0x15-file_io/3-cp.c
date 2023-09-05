@@ -9,7 +9,7 @@
 int file_to_file(const char *filename1, const char *filename2)
 {
 	int fd1, fd2;
-	ssize_t bytes;
+	ssize_t bytes = 1;
 	char buffer[1024 * 8];
 
 	fd1 = open(filename1, O_RDONLY);
