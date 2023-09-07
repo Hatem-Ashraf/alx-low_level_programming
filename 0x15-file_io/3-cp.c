@@ -16,20 +16,20 @@ void file_to_file(const char *filename1, const char *filename2)
 
 	fd1 = open(filename1, O_RDONLY);
 	if (fd1 == -1)
-		dprintf(2, "Error: Can't read from file %s\n", filename1), exit(98);
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", filename1), exit(98);
 	if (access(filename2, F_OK) == -1)
 	{
 		fd2 = open(filename2, O_WRONLY | O_CREAT);
 		if (fchmod(fd2, 0664) != 0)
 		{
-			dprintf(2, "Error: Can't write to %s\n", filename2);
+			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", filename2);
 			exit(99);
 		}
 	}
 	else
 		fd2 = open(filename2, O_WRONLY | O_CREAT | O_TRUNC);
 	if (fd2 == -1)
-		dprintf(2, "Error: Can't write to %s\n", filename2), exit(99);
+		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", filename2), exit(99);
 	while (bytes > 0)
 	{
 		bytes = read(fd1, &buffer[0], sizeof(buffer) - 1);
@@ -38,14 +38,14 @@ void file_to_file(const char *filename1, const char *filename2)
 		buffer[bytes] = '\0';
 		bytes = write(fd2, &buffer[0], bytes);
 		if (bytes == -1)
-			dprintf(2, "Error: Can't write to %s\n", filename2), exit(99);
+			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", filename2), exit(99);
 	}
 	close(fd1);
 	if (fcntl(fd1, F_GETFD) != -1)
-		dprintf(2, "Error: Can't close fd %d\n", fd1), exit(100);
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd1), exit(100);
 	close(fd2);
 	if (fcntl(fd2, F_GETFD) != -1)
-		dprintf(2, "Error: Can't close fd %d\n", fd2), exit(100);
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd2), exit(100);
 }
 
 /**
