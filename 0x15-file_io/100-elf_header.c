@@ -219,13 +219,13 @@ int main(int argc, char *argv[])
 		dprintf(2, "Usage:  ./elf_header elf_filename\n"), exit(98);
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
-		dprintf(2, "cannot open the file %s\n", argv[1]), exit(98);
+		dprintf(STDERR_FILENO, "cannot open the file %s\n", argv[1]), exit(98);
 	bytes = read(fd, &header, sizeof(header));
 	if (bytes == -1)
-		dprintf(2, "cannot read the file %s\n", argv[1]), exit(98);
+		dprintf(STDERR_FILENO, "cannot read the file %s\n", argv[1]), exit(98);
 	if (header.e_ident[0] != 0x7f || header.e_ident[1] != 'E'
 			|| header.e_ident[2] != 'L' || header.e_ident[3] != 'F')
-		dprintf(2, "%s is not a ELF file\n", argv[1]), exit(98);
+		dprintf(STDERR_FILENO, "%s is not a ELF file\n", argv[1]), exit(98);
 	printf("ELF Header:\n");
 	printf("  Magic:   ");
 	for (i = 0; i < EI_NIDENT; i++)
@@ -240,6 +240,6 @@ int main(int argc, char *argv[])
 	address(header);
 	close(fd);
 	if (fcntl(fd, F_GETFD) != -1)
-		dprintf(2, "Cannot close the file %s\n", argv[1]), exit(98);
+		dprintf(STDERR_FILENO, "Cannot close the file %s\n", argv[1]), exit(98);
 	return (0);
 }
