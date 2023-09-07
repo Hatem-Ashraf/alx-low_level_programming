@@ -16,15 +16,15 @@ void file_to_file(const char *filename1, const char *filename2)
 
 	fd1 = open(filename1, O_RDONLY);
 	if (fd1 == -1)
-		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", filename1), exit(98);
+	{
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", filename1);
+		exit(98);
+	}
 	if (access(filename2, F_OK) == -1)
 	{
 		fd2 = open(filename2, O_WRONLY | O_CREAT);
 		if (fchmod(fd2, 0664) != 0)
-		{
-			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", filename2);
-			exit(99);
-		}
+			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", filename2), exit(99);
 	}
 	else
 		fd2 = open(filename2, O_WRONLY | O_CREAT | O_TRUNC);
@@ -38,7 +38,10 @@ void file_to_file(const char *filename1, const char *filename2)
 		buffer[bytes] = '\0';
 		bytes = write(fd2, &buffer[0], bytes);
 		if (bytes == -1)
-			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", filename2), exit(99);
+		{
+			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", filename2);
+			exit(99);
+		}
 	}
 	close(fd1);
 	if (fcntl(fd1, F_GETFD) != -1)
