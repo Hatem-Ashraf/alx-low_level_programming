@@ -18,7 +18,7 @@ void class(Elf64_Ehdr h)
 			printf("  Class:                             ELF64\n");
 			break;
 		default:
-			printf("none");
+			printf("none\n");
 	}
 }
 /**
@@ -39,6 +39,7 @@ void data(Elf64_Ehdr h)
 			break;
 		default:
 			printf("none\n");
+			break;
 	}
 }
 /**
@@ -56,6 +57,7 @@ void version(Elf64_Ehdr h)
 			break;
 		default:
 			printf("%s\n", "");
+			break;
 	}
 }
 /**
@@ -101,7 +103,7 @@ void OSABI(Elf64_Ehdr h)
 			printf("UNIX - HP-UX\n");
 			break;
 		case ELFOSABI_NETBSD:
-			printf("UNIX - NETBSD\n");
+			printf("UNIX - NetBSD\n");
 			break;
 		case ELFOSABI_LINUX:
 			printf("UNIX - Linux\n");
@@ -123,6 +125,7 @@ void OSABI(Elf64_Ehdr h)
 			break;
 		default:
 			OSABI2(h);
+			break;
 	}
 }
 /**
@@ -179,7 +182,7 @@ void address(Elf64_Ehdr h)
 	char *ptr = (char *)&h.e_entry;
 
 	printf("  Entry point address:               0x");
-	if (h.e_ident[EI_CLASS] == ELFDATA2MSB)
+	if (h.e_ident[EI_DATA] == ELFDATA2MSB)
 	{
 		length = h.e_ident[EI_CLASS] == ELFCLASS64 ? 7 : 3;
 		while (!ptr[i])
