@@ -216,20 +216,20 @@ int main(int argc, char *argv[])
 	int fd, i;
 
 	if (argc != 2)
-		dprintf(2, "Usage:  ./elf_header elf_filename\n"), exit(98);
+		dprintf(STDERR_FILENO, "Usage: elf_header elf_filename\n"), exit(98);
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
-		dprintf(STDERR_FILENO, "cannot open the file %s\n", argv[1]), exit(98);
+		dprintf(STDERR_FILENO, "Can't open file %s\n", argv[1]), exit(98);
 	bytes = read(fd, &header, sizeof(header));
 	if (bytes == -1)
-		dprintf(STDERR_FILENO, "cannot read the file %s\n", argv[1]), exit(98);
+		dprintf(STDERR_FILENO, "Can't read from file %s\n", argv[1]), exit(98);
 	if (header.e_ident[0] != 0x7f || header.e_ident[1] != 'E'
 			|| header.e_ident[2] != 'L' || header.e_ident[3] != 'F')
-		dprintf(STDERR_FILENO, "%s is not a ELF file\n", argv[1]), exit(98);
+		dprintf(STDERR_FILENO, "Not ELF file: %s\n", argv[1]), exit(98);
 	printf("ELF Header:\n");
 	printf("  Magic:   ");
 	for (i = 0; i < EI_NIDENT; i++)
-		printf("%02x ", header.e_ident[i]);
+		printf("%2.2x%s", header.e_ident[i], i != EI_NIDENT -1 ? " " : "");
 	printf("\n");
 	class(header);
 	data(header);
