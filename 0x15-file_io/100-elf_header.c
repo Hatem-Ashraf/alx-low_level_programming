@@ -229,8 +229,7 @@ int main(int argc, char *argv[])
 	printf("ELF Header:\n");
 	printf("  Magic:   ");
 	for (i = 0; i < EI_NIDENT; i++)
-		printf("%2.2x%s", header.e_ident[i], i != EI_NIDENT -1 ? " " : "");
-	printf("\n");
+		printf("%2.2x%s", header.e_ident[i], i != EI_NIDENT - 1 ? " " : "\n");
 	class(header);
 	data(header);
 	version(header);
