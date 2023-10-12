@@ -21,4 +21,6 @@ unsigned int print_dlistint(const dlistint_t *);
 
 unsigned int dlistint_len(const dlistint_t *h);
 
+dlistint_t *add_dnodeint(dlistint_t **head, const int n);
+
 #endif
